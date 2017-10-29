@@ -1,0 +1,44 @@
+分层：
+
+ui
+	-base //MVP、Activity基类
+
+domain //业务逻辑
+
+model //数据中心
+
+Manager
+	UserManager
+
+
+基础库：
+是否需要把基础lib单独一个module？
+
+Retrofit
+	统一结果解析/错误处理，map操作符把结果做转换
+		BaseObserver的onNext()中解析BaseResponse<T>，T为Data，包含ErrorInfo
+		compose操作符处理Observable基础设置，例如subscribeOn(IO Thread)，observeOn(AndroidMainThread)
+	Cache Response
+	等待多个Request都成功后才回调
+	基于参数的加签，interceptor
+	上传/下载，进度监听
+	
+
+Router
+
+Dialog
+
+下拉刷新/上拉加载控件
+
+Button
+
+轮播图
+
+权限
+
+EventBus
+
+
+
+
+
