@@ -1,4 +1,4 @@
-package com.lx.potato.ui.view;
+package com.lx.potato.ui.widget;
 
 /**
  * Created by lixiang on 2017/10/29.

@@ -2,9 +2,11 @@
 
 ui
 	-base //MVP、Activity基类
-	首页单个Activity包含多个Fragment的结构时，View包含所有Fragment的事件接口，每个Fragment都去实现View接口，
-	Presenter只有一个，每个Fragment持有Presenter的引用，在事件发生时调用Presenter去处理，Presenter处理完了再调用
-	Activity实现的View来分发数据，在Activity中分发该数据由哪个Fragment来处理
+	单Activity多Fragment结构：
+	    方案1：activity有自己的p，fragment也有自己的p (这种比较好)
+	    方案2：首页单个Activity包含多个Fragment的结构时，View包含所有Fragment的事件接口，每个Fragment都去实现View接口，
+            	Presenter只有一个，每个Fragment持有Presenter的引用，在事件发生时调用Presenter去处理，Presenter处理完了再调用
+            	Activity实现的View来分发数据，在Activity中分发该数据由哪个Fragment来处理
 
 domain //业务逻辑
 

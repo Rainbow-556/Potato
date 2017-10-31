@@ -1,4 +1,4 @@
-package com.lx.potato.util;
+package com.lx.potato.common.util;
 
 import android.util.Log;
 

@@ -6,7 +6,7 @@ import com.lx.potato.model.entity.Gank;
 import com.lx.potato.model.local.SharedPrefHelper;
 import com.lx.potato.model.remote.ApiService;
 import com.lx.potato.model.remote.ApiServiceCreator;
-import com.lx.potato.util.RetrofitUtil;
+import com.lx.potato.common.util.RetrofitUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +39,10 @@ public final class DataManager {
             }
         }
         return instance;
+    }
+
+    public SharedPrefHelper getSharedPrefHelper() {
+        return mSharedPrefHelper;
     }
 
     public Observable<List<Gank>> getGank() {
