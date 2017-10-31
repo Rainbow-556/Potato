@@ -4,10 +4,16 @@ import android.util.Log;
 
 public final class LogUtil {
     private static final boolean LOG_ENABLED = true;
-    private static final String TAG_MSG = "msg";
+    private static final String TAG_MSG = "CommonMsg";
+    private static final String TAG_API_SERVICE = "ApiService";
 
     public static boolean isLogEnabled() {
         return LOG_ENABLED;
+    }
+
+    public static void logApiRequest(String msg) {
+        if (LOG_ENABLED)
+            Log.i(TAG_API_SERVICE, msg);
     }
 
     public static void i(String tag, String msg) {
@@ -17,7 +23,7 @@ public final class LogUtil {
 
     public static void msg(String msg) {
         if (LOG_ENABLED)
-            Log.i(TAG_MSG, msg);
+            Log.d(TAG_MSG, msg);
     }
 
     public static void d(String tag, String msg) {

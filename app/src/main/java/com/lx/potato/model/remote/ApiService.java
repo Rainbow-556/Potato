@@ -16,6 +16,6 @@ public interface ApiService {
     @GET("?key=1")
     Observable<ResponseBody> getQQ();
 
-    @GET("http://gank.io/api/data/Android/10/1")
+    @GET("http://gank.io/api/data/Android/10/1?key=key")
     Observable<BaseResponse<List<Gank>>> getGank();
 }

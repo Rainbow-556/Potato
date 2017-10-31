@@ -2,6 +2,7 @@
 
 ui
 	-base //MVP、Activity基类
+	复杂页面使用MVP模式，简单的页面还是使用MVC
 	单Activity多Fragment结构：
 	    方案1：activity有自己的p，fragment也有自己的p (这种比较好)
 	    方案2：首页单个Activity包含多个Fragment的结构时，View包含所有Fragment的事件接口，每个Fragment都去实现View接口，
