@@ -1,5 +1,19 @@
-分层：
+MVP规则：
+Separate your app business logic by moving it to a plain java Presenter object
+Spend time writing a clean interface between your Presenter and your View
+Have Fragment, Activities or custom views implement the View interface
+For lists, have the ViewHolder implement the View interface
+Test your Presenter thoroughly
+Retain your Presenters during orientation change
+View不处理任何业务逻辑，只产生事件和提供必要的数据，
+Presenter处理所有业务逻辑，处理之后，再跟Model交互，再把最终结果反映到View上
+比如：
+登录，点击登录按钮，View只是把account和password传给Presenter，由Presenter来做参数合法性校验，如果非法参数则回调View的对应错误显示
+点击事件的页面跳转，如果不需要逻辑判断，则直接由View层跳转，否则交给Presenter去判断逻辑再调用View层去跳转
+UI上的每部分都可以分割独立出来，每个独立的部分都是View，这些View都能拥有自己的Presenter，这样就把页面分成了很多个小块，利于维护
+可以当做View的：Activity、Fragment、自定义View、ListView/RecyclerView/Adapter/ViewHolder等
 
+分层：
 ui
 	-base //MVP、Activity基类
 	复杂页面使用MVP模式，简单的页面还是使用MVC
