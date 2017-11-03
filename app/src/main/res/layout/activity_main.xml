@@ -6,10 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.lx.potato.ui.activity.MainActivity">
-    <TextView
+    <com.lx.potato.ui.widget.FButton
         android:id="@+id/tv"
-        android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"/>
+        android:layout_centerInParent="true"
+        android:text="Hello World!"
+        app:btn_color="yellow"
+        app:btn_size="middle"
+        android:textSize="18sp"/>
 </RelativeLayout>
