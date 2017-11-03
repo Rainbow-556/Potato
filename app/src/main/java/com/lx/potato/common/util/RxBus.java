@@ -67,7 +67,7 @@ public final class RxBus {
         return register(eventType, observer, null, strategy);
     }
 
-    private void unRegister(Disposable disposable) {
+    public void unRegister(Disposable disposable) {
         if (disposable != null && !disposable.isDisposed()) {
             disposable.dispose();
         }

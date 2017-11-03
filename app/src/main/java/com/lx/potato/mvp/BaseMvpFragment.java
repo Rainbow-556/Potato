@@ -3,16 +3,16 @@ package com.lx.potato.mvp;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.lx.potato.ui.activity.BaseActivity;
+import com.lx.potato.ui.fragment.BaseFragment;
 
 /**
- * Created by lixiang on 2017/10/31.
+ * Created by lixiang on 2017/11/2.
  */
-public abstract class BaseMvpActivity<P extends IMvpPresenter> extends BaseActivity {
+public abstract class BaseMvpFragment<P extends IMvpPresenter> extends BaseFragment {
     protected P mPresenter;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenter = initPresenter();
     }
@@ -20,7 +20,7 @@ public abstract class BaseMvpActivity<P extends IMvpPresenter> extends BaseActiv
     protected abstract P initPresenter();
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
         mPresenter.detachView();
     }

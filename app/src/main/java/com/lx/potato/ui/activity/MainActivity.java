@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tv = (TextView) findViewById(R.id.tv);
-        getGank_4();
     }
 
     private void getGank_4() {

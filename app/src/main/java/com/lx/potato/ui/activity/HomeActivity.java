@@ -3,15 +3,11 @@ package com.lx.potato.ui.activity;
 import com.lx.potato.R;
 import com.lx.potato.mvp.BaseMvpActivity;
 import com.lx.potato.mvp.contract.HomeContract;
-import com.lx.potato.presenter.HomePresenter;
 
 /**
  * Created by lixiang on 2017/10/31.
  */
-public class HomeActivity extends BaseMvpActivity<HomeContract.AbsHomePresenter> implements HomeContract.HomeView {
-    @Override
-    public void showData(String data) {
-    }
+public class HomeActivity extends BaseMvpActivity<HomeContract.IHomePresenter> implements HomeContract.IHomeView {
 
     @Override
     protected void initView() {
@@ -24,13 +20,15 @@ public class HomeActivity extends BaseMvpActivity<HomeContract.AbsHomePresenter>
     }
 
     @Override
-    protected HomeContract.AbsHomePresenter initPresenter() {
-        HomePresenter presenter = new HomePresenter();
-        presenter.attachView(this);
-        return presenter;
+    public void setPresenter(HomeContract.IHomePresenter presenter) {
     }
 
     @Override
-    public void setPresenter(HomeContract.AbsHomePresenter presenter) {
+    public void showData(String data) {
+    }
+
+    @Override
+    protected HomeContract.IHomePresenter initPresenter() {
+        return null;
     }
 }

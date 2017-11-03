@@ -7,21 +7,26 @@ Test your Presenter thoroughly
 Retain your Presenters during orientation change
 View不处理任何业务逻辑，只产生事件和提供必要的数据，
 Presenter处理所有业务逻辑，处理之后，再跟Model交互，再把最终结果反映到View上
-比如：
-登录，点击登录按钮，View只是把account和password传给Presenter，由Presenter来做参数合法性校验，如果非法参数则回调View的对应错误显示
-点击事件的页面跳转，如果不需要逻辑判断，则直接由View层跳转，否则交给Presenter去判断逻辑再调用View层去跳转
-UI上的每部分都可以分割独立出来，每个独立的部分都是View，这些View都能拥有自己的Presenter，这样就把页面分成了很多个小块，利于维护
+// 业务逻辑&UI显示的划分
+业务逻辑：获取到数据后，按照业务逻辑解析数据后，直接调用View的显示方法
+UI显示：只单纯接收数据显示UI，尽量别做根据数据逻辑去显示，解析数据逻辑的工作放在Presenter做
+UI上的每个独立的部分可以分离出来，每个独立的部分都是View，这些View都能拥有自己的Presenter，这样就把页面分成了很多个小块
 可以当做View的：Activity、Fragment、自定义View、ListView/RecyclerView/Adapter/ViewHolder等
+
+比如：
+1、登录：
+点击登录按钮，View只是把account和password传给Presenter，由Presenter来做参数合法性校验，如果非法参数则回调View的对应错误显示
+点击事件的页面跳转，如果不需要逻辑判断，则直接由View层跳转，否则交给Presenter去判断逻辑再调用View层去跳转
+2、用户生日当天显示特殊头像：
+View初始化时通知Presenter拉取数据，之后Presenter根据数据判断用户是否今天生日，如果生日则直接调用View.showBirthdayHead()
+
 
 分层：
 ui
 	-base //MVP、Activity基类
 	复杂页面使用MVP模式，简单的页面还是使用MVC
 	单Activity多Fragment结构：
-	    方案1：activity有自己的p，fragment也有自己的p (这种比较好)
-	    方案2：首页单个Activity包含多个Fragment的结构时，View包含所有Fragment的事件接口，每个Fragment都去实现View接口，
-            	Presenter只有一个，每个Fragment持有Presenter的引用，在事件发生时调用Presenter去处理，Presenter处理完了再调用
-            	Activity实现的View来分发数据，在Activity中分发该数据由哪个Fragment来处理
+	    activity有自己的p，fragment也有自己的p
 
 domain //业务逻辑
 

@@ -3,5 +3,5 @@ package com.lx.potato.common.push;
 /**
  * Created by lixiang on 2017/10/31.
  */
-public class PushManager {
+public final class PushManager {
 }

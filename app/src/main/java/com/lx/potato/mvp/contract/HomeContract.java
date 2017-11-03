@@ -1,17 +1,17 @@
 package com.lx.potato.mvp.contract;
 
-import com.lx.potato.mvp.MvpPresenter;
-import com.lx.potato.mvp.MvpView;
+import com.lx.potato.mvp.IMvpPresenter;
+import com.lx.potato.mvp.IMvpView;
 
 /**
  * Created by lixiang on 2017/10/31.
  */
 public interface HomeContract {
-    interface HomeView extends MvpView<AbsHomePresenter> {
+    interface IHomeView extends IMvpView<IHomePresenter> {
         void showData(String data);
     }
 
-    abstract class AbsHomePresenter extends MvpPresenter<HomeView> {
-        public abstract void getData(String key);
+    interface IHomePresenter extends IMvpPresenter<IHomeView> {
+        void getData(String key);
     }
 }
