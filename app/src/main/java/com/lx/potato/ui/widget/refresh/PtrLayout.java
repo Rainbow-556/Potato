@@ -73,7 +73,7 @@ public class PtrLayout extends FrameLayout {
         addView(header, lp);
         mHeaderView = header;
         animator = ValueAnimator.ofInt(0, 0);
-        animator.setDuration(300);
+        animator.setDuration(200);
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -135,8 +135,6 @@ public class PtrLayout extends FrameLayout {
                 mLastY = curY;
                 break;
             case MotionEvent.ACTION_MOVE:
-                boolean canScrollUp = canScrollUp();
-//                logMsg("canScrollUp:" + canScrollUp);
                 int offsetY = (int) (curY - mLastY);
                 mLastY = curY;
                 /*处理下拉刷新*/
@@ -146,9 +144,12 @@ public class PtrLayout extends FrameLayout {
                     clearContentViewFocus(true);
                     scrollTo(0, 0);
                     isHeaderLeftStartPosition = false;
+                    // dispatchTouchEventSuper()让ContentView响应事件
                     return dispatchTouchEventSuper(ev);
                 }
-                if (!canScrollUp && scrollY == 0 && offsetY > 0 || isHeaderLeftStartPosition) {
+                boolean atTop = !canScrollUp();
+                // !canScrollUp表示ContentView已经滚动到最顶部
+                if (isHeaderLeftStartPosition || atTop && scrollY == 0 && offsetY > 0) {
                     clearContentViewFocus(true);
                     isHeaderLeftStartPosition = true;
                     scrollBy(0, (int) (-offsetY / 1.7f));
@@ -159,14 +160,16 @@ public class PtrLayout extends FrameLayout {
                     return true;
                 }
                 /*处理上拉加载*/
+                // scrollY小于0时，footer已经不可见
                 if (scrollY < 0 && isFooterLeftStartPosition) {
                     clearContentViewFocus(true);
                     scrollTo(0, 0);
-                    isHeaderLeftStartPosition = false;
+                    isFooterLeftStartPosition = false;
                     return dispatchTouchEventSuper(ev);
                 }
-                boolean canScrollDown = canScrollDown();
-                if (!canScrollDown && scrollY == 0 && offsetY < 0 || isFooterLeftStartPosition) {
+                boolean atBottom = !canScrollDown();
+                // !canScrollDown表示ContentView已经滚动到最底部
+                if (isFooterLeftStartPosition || atBottom && scrollY == 0 && offsetY < 0) {
                     clearContentViewFocus(true);
                     isFooterLeftStartPosition = true;
                     scrollBy(0, (int) (-offsetY / 1.7f));
@@ -177,7 +180,7 @@ public class PtrLayout extends FrameLayout {
             case MotionEvent.ACTION_CANCEL:
                 if (mCurState == STATE_REFRESHING) {
                     restoreHeader();
-                    break;
+                    return true;
                 }
                 // header已全部显示出来，进入刷新状态
                 if (getScrollY() <= -mHeaderView.getMeasuredHeight()) {
